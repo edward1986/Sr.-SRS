@@ -670,7 +670,7 @@ if __name__ == "__main__":
         if "Error" not in blog_content:
             send_email(
                 recipient_email=recipient,
-                subject=blog_content["title"],
+                subject=topic,
                 content=blog_content["blog"],
                 attachment_path=file_name
             )
