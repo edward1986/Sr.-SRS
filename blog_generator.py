@@ -1099,8 +1099,8 @@ def get_ollama_response(input_text, no_words, blog_style, word_of_the_day, model
 def send_email(recipient_email, subject, content):
     """Send the generated blog content via email."""
     try:
-        sender_email = "edwardlorilla2013@gmail.com"
-        sender_password = "giax bwty esxw dquw"
+        sender_email = "edwardlance.lorilla@ustp.edu.ph"
+        sender_password = "fpkb thiy cwmx vknz"
 
         # Set up the MIME message
         message = MIMEMultipart()
