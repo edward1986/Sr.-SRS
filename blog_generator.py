@@ -10,7 +10,6 @@ import feedparser
 import requests
 file_path = "topics.json"
 
-# Function to load existing topics from the file
 def load_topics():
     try:
         with open(file_path, "r") as file:
