@@ -24,9 +24,8 @@ jobs:
         sudo rm -rf /var/lib/apt/lists/*
         sudo apt-get update
         sudo apt-get install -y ttf-mscorefonts-installer imagemagick ghostscript curl jq
-        import requests
         pip install feedparser
-
+        pip install requests
     - name: Install Ollama
       run: |
         echo "Installing Ollama CLI..."
