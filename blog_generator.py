@@ -5,7 +5,37 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import os
 from datetime import datetime
+import json
+file_path = "topics.json"
 
+# Function to load existing topics from the file
+def load_topics():
+    try:
+        with open(file_path, "r") as file:
+            data = json.load(file)
+            return data.get("topics", [])
+    except (FileNotFoundError, json.JSONDecodeError):
+        return []
+
+# Function to save topics to the file
+def save_topics(topics):
+    with open(file_path, "w") as file:
+        json.dump({"topics": topics}, file, indent=2)
+
+# Function to add topics without duplication
+def add_topics(new_topics):
+    existing_topics = load_topics()
+    for topic in new_topics:
+        if topic not in existing_topics:
+            existing_topics.append(topic)
+    save_topics(existing_topics)
+
+# New topics to be added
+new_topics = [
+  
+]
+
+add_topics(new_topics)
 def ensure_model_available(model_name):
     """Ensure the model[
         "Researchers", "Data Scientists", "Common People", "Students", "Entrepreneurs",
