@@ -121,9 +121,25 @@ def fetch_word_of_the_day():
 
 def generate_random_inputs():
     topics = []
+    # Check if the file exists and load its contents
     if os.path.exists(file_path):
-        with open(file_path, 'r') as f:
-            topics = json.load(f)
+        try:
+            with open(file_path, 'r') as f:
+                data = json.load(f)
+                # Ensure the "topics" key exists and is a list
+                if isinstance(data, dict) and "topics" in data and isinstance(data["topics"], list):
+                    topics = data["topics"]
+                else:
+                    print(f"Warning: The file {file_path} does not contain a valid 'topics' list.")
+        except json.JSONDecodeError:
+            print(f"Error: The file {file_path} contains invalid JSON.")
+        except Exception as e:
+            print(f"An unexpected error occurred: {e}")
+    else:
+        print(f"File {file_path} does not exist.")
+    
+    # Print the loaded topics
+    print("Loaded topics:", topics)
     
     
     styles = [
