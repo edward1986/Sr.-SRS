@@ -6,6 +6,8 @@ from email.mime.multipart import MIMEMultipart
 import os
 from datetime import datetime
 import json
+import feedparser
+import requests
 file_path = "topics.json"
 
 # Function to load existing topics from the file
@@ -31,11 +33,17 @@ def add_topics(new_topics):
     save_topics(existing_topics)
 
 # New topics to be added
-new_topics = [
-  
-]
+rss_url = 'https://www.manilatimes.net/business/foreign-business/feed/'
+feed = feedparser.parse(rss_url)
 
-add_topics(new_topics)
+# Parse the RSS feed entries
+new_entries = []
+new_guids = set()
+
+for entry in feed.entries:
+    new_entries.append(entry.title)
+
+add_topics(new_entries)
 def ensure_model_available(model_name):
     """Ensure the model[
         "Researchers", "Data Scientists", "Common People", "Students", "Entrepreneurs",
@@ -114,7 +122,12 @@ def fetch_word_of_the_day():
         return None
 
 def generate_random_inputs():
-    topics = [
+    topics = []
+    if os.path.exists(file_path):
+        with open(file_path, 'r') as f:
+            topics = json.load(f)
+    else:
+        topics = [
         "It literally takes fire and brimstone to transport gold to Earth's surface",
   "New study explains how gold reaches Earth’s surface",
   "From magma to treasure: Scientists uncover secrets of gold’s journey through magmatic fluids",
@@ -647,6 +660,7 @@ def generate_random_inputs():
         "The Role of Behavioral Economics in Marketing",
         "Remote Work: Productivity Challenges and Benefits"
     ]
+    
     styles = [
         "Origami Artists",
     "Cartographers",
