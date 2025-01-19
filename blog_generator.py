@@ -9,7 +9,6 @@ import json
 import feedparser
 import requests
 file_path = "topics.json"
-
 def load_topics():
     try:
         with open(file_path, "r") as file:
