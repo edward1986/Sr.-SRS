@@ -644,6 +644,7 @@ if __name__ == "__main__":
         "edwardlorilla2091.edwardlancelorilla@blogger.com",
     ]
     for recipient in recipients:
+        __title = entry["title"]
         image_url = f"https://pollinations.ai/p/{__title}?width={width}&height={height}&seed={seed}&model={model}"
         file_name = f"image.jpg"
         try:
