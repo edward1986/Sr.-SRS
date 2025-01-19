@@ -12,6 +12,7 @@ import feedparser
 import requests
 file_path = "topics.json"
 width = 720
+seed = 1
 height = 1280
 def download_image(image_url, file_name):
     response = requests.get(image_url)
